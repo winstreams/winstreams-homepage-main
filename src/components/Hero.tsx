@@ -101,22 +101,22 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-slate-950 overflow-hidden py-20 lg:py-28">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="relative bg-slate-950 overflow-hidden min-h-[85vh] flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 md:py-20 lg:py-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-14 items-center">
           
           {/* LEFT COLUMN */}
-          <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 shadow-xl text-center">
+          <div className="w-full max-w-none md:max-w-2xl mx-auto lg:mx-0 bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
               <span className="text-white">Turn Missed Calls Into </span>
               <span className="text-brand-magenta">Booked Jobs</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed">
               Your AI Receptionist talks to clients, qualifies them, and books appointments straight into your calendar 24/7 — even when you're busy or out living your life.
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
               <button
                 type="button"
                 onClick={handleCTAClick}
@@ -134,35 +134,34 @@ const Hero = () => {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-brand-navy font-medium px-8 py-4 text-lg rounded-full border-2 border-brand-navy hover:bg-brand-navy hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 See How It Works
-                <ChevronDown className="w-5 h-5" aria-hidden="true" />
+                <ChevronDown className="w-4 h-4 ml-1" aria-hidden="true" />
               </button>
             </div>
 
-            <p className="text-slate-400 italic text-base mb-8">
+            <p className="text-sm md:text-base text-slate-300 italic mb-8">
               Busy Does Not Mean Missed. Just WinStreams.
             </p>
 
-            {/* FIXED: Icons now match Services with pill containers */}
-            <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6">
-              <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                  <Sparkle size={18} weight="duotone" className="text-emerald-500" />
+            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-slate-300">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                  <Sparkle size={20} weight="duotone" className="text-emerald-500" />
                 </div>
-                <span className="text-sm text-slate-300 font-medium">AI Learns Your Business</span>
+                <span>AI Learns Your Business</span>
               </div>
 
-              <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                  <CalendarCheck size={18} weight="duotone" className="text-emerald-500" />
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                  <CalendarCheck size={20} weight="duotone" className="text-emerald-500" />
                 </div>
-                <span className="text-sm text-slate-300 font-medium">New Leads on Your Calendar</span>
+                <span>New Leads on Your Calendar</span>
               </div>
 
-              <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                  <Moon size={18} weight="duotone" className="text-emerald-500" />
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                  <Moon size={20} weight="duotone" className="text-emerald-500" />
                 </div>
-                <span className="text-sm text-slate-300 font-medium">Books While You Sleep</span>
+                <span>Books While You Sleep</span>
               </div>
             </div>
           </div>
@@ -222,7 +221,6 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* FIXED: Reduced gap from gap-8 to gap-4 */}
               <div className="mt-6 pt-6 border-t border-slate-700">
                 <div className="grid grid-cols-4 gap-4">
                   <div className="flex flex-col items-center justify-start">

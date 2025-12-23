@@ -107,7 +107,7 @@ const Hero = () => {
           
           {/* LEFT COLUMN */}
           <div className="w-full max-w-none md:max-w-2xl mx-auto lg:mx-0 bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-0 sm:p-6 lg:p-8 shadow-xl text-center">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6">
+            <h1 className="text-[28px] sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6">
               <span className="text-white">Turn Missed Calls Into </span>
               <span className="text-brand-magenta">Booked Jobs</span>
             </h1>
@@ -121,7 +121,7 @@ const Hero = () => {
                 type="button"
                 onClick={handleCTAClick}
                 aria-label="Book a strategy call"
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-brand-magenta text-white font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-brand-magenta/20 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-brand-magenta text-white font-semibold px-8 py-3.5 text-lg rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-brand-magenta/20 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 Book Strategy Call
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
@@ -131,7 +131,7 @@ const Hero = () => {
                 type="button"
                 onClick={scrollToHowItWorks}
                 aria-label="See how our AI receptionist works"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-brand-navy font-medium px-8 py-4 text-lg rounded-full border-2 border-brand-navy hover:bg-brand-navy hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-brand-navy font-medium px-8 py-3.5 text-lg rounded-full border-2 border-brand-navy hover:bg-brand-navy hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
                 See How It Works
                 <ChevronDown className="w-4 h-4 ml-1" aria-hidden="true" />

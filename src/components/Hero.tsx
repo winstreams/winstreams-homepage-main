@@ -152,14 +152,14 @@ const Hero = () => {
           {/* LEFT COLUMN */}
           <div className="w-full max-w-none md:max-w-2xl mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-white/5 to-transparent p-4 sm:p-5 md:bg-slate-900/40 md:backdrop-blur-sm md:border md:border-white/10 md:p-8 lg:p-10 md:shadow-xl text-center">
             
-            {/* HEADLINE */}
-            <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2.125rem] sm:text-5xl md:text-6xl font-bold leading-snug tracking-tight mb-5">
+            {/* HEADLINE - Slightly smaller than Services (2.5rem vs 2.75rem) */}
+            <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2.5rem] sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-5">
               <span className="text-white">Turn Missed Calls Into </span>
               <span className="text-brand-magenta">Booked&nbsp;Jobs</span>
             </h1>
 
-            {/* SUBHEAD */}
-            <p className="text-[15px] sm:text-base md:text-xl text-slate-300/90 mb-8 leading-[1.65] md:leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
+            {/* SUBHEAD - Match Services Hero size (text-base on mobile) */}
+            <p className="text-base sm:text-lg md:text-xl text-slate-300/90 mb-8 leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
               Your AI Receptionist talks to clients, qualifies them, and books appointments straight into your calendar 24/7 — even when you're busy or out living your life.
             </p>
 

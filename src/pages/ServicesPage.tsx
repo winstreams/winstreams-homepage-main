@@ -15,10 +15,6 @@ import { Footer } from "@/components/layout/Footer";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-// ==================== COMPONENT ====================
-
-// ==================== DATA ARRAYS ====================
-
 // ==================== FAQ DATA ====================
 
 const faqItems = [
@@ -62,23 +58,27 @@ export function ServicesPage() {
       <Navbar />
 
       {/* SECTION 1: HERO - Dark with Frosted Panel */}
+      {/* Matches Home Hero: py-20 lg:py-28, text-4xl sm:text-5xl md:text-6xl headline, text-lg md:text-xl subhead */}
       <section className="relative bg-slate-950 overflow-hidden py-20 lg:py-28">
         <div className="max-w-4xl mx-auto px-6">
           {/* Frosted Glass Panel */}
           <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 shadow-xl text-center">
             {/* HEADLINE */}
+            {/* text-4xl sm:text-5xl md:text-6xl matches Home Hero */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
               <span className="text-white">Your AI Receptionist & Booking System, </span>
               <span className="text-brand-magenta">Done For You.</span>
             </h1>
 
             {/* SUBHEAD */}
+            {/* text-lg md:text-xl matches Home Hero */}
             <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl mx-auto">
               WinStreams answers every missed call, qualifies real jobs, and books them straight into your calendar—plus
               we help you boost your website, outreach, and operations for even more conversions.
             </p>
 
             {/* CTA BUTTONS */}
+            {/* px-8 py-4 text-lg matches Home Hero */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               {/* Primary CTA */}
               <Link
@@ -100,9 +100,11 @@ export function ServicesPage() {
             </div>
 
             {/* Tagline */}
+            {/* text-slate-400 italic matches Home Hero */}
             <p className="text-slate-400 italic text-base mb-8">Busy Does Not Mean Missed. Just WinStreams.</p>
 
             {/* Trust Indicators - Badge Row */}
+            {/* bg-slate-800/50 with bg-brand-magenta/20 icon circles matches Home Hero */}
             <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6">
               <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
                 <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
@@ -127,6 +129,7 @@ export function ServicesPage() {
         </div>
       </section>
 
+      {/* SECTION 2: HOW SYSTEM WORKS */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           {/* CENTERED HEADER */}
@@ -644,7 +647,7 @@ export function ServicesPage() {
         </div>
       </section>
 
-      {/* SECTION 6: FINAL CTA */}
+      {/* SECTION 5: FINAL CTA */}
       <FinalCTA />
 
       <Footer />

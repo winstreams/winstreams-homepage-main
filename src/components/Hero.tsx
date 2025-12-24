@@ -36,7 +36,6 @@ const Hero = () => {
   const navigate = useNavigate();
 
   // NOTIFICATIONS DATA
-  // Uses stable IDs and typed colors for React reconciliation safety
   const notifications: Notification[] = [
     {
       id: "incoming",
@@ -72,8 +71,7 @@ const Hero = () => {
     },
   ];
 
-  // WEEKLY JOBS DATA
-  // Fixed Thursday label from "T" to "Th" for clarity
+  // WEEKLY JOBS DATA (Thursday label fixed to "Th")
   const weeklyJobs = [
     { id: "mon", day: "M", jobs: 3 },
     { id: "tue", day: "T", jobs: 2 },
@@ -85,7 +83,6 @@ const Hero = () => {
   ];
 
   // BENEFITS PILLS DATA (Home Hero content preserved)
-  // Stable IDs for copy-change resilience
   const benefits: Benefit[] = [
     { id: "learn", icon: Sparkle, label: "AI Learns Your Business" },
     { id: "calendar", icon: CalendarCheck, label: "New Leads on Your Calendar" },
@@ -94,8 +91,7 @@ const Hero = () => {
 
   const totalJobs = weeklyJobs.reduce((sum, day) => sum + day.jobs, 0);
 
-  // COLOR MAP
-  // Type-safe object-based lookups with satisfies for extra safety
+  // COLOR MAP (type-safe lookups)
   const colorMap = {
     amber: {
       text: "text-amber-400",
@@ -123,19 +119,12 @@ const Hero = () => {
     },
   } as const satisfies Record<
     NotifColor,
-    {
-      text: string;
-      bg: string;
-      border: string;
-      badge: string;
-    }
+    { text: string; bg: string; border: string; badge: string }
   >;
 
   const scrollToHowItWorks = () => {
     const element = document.getElementById("how-it-works");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleCTAClick = () => {
@@ -147,10 +136,8 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* LEFT COLUMN */}
-          {/* FIX: Removed max-w-4xl constraint, used lg:max-w-none to fill grid column */}
           <div className="w-full max-w-2xl lg:max-w-none mx-auto lg:mx-0">
-            {/* RESTORED: Gradient ghost card for mobile, frosted for desktop */}
-            {/* ADDED: lg:mx-0 to anchor content to grid edge on large screens */}
+            {/* Ghost gradient mobile, frosted md+ */}
             <div className="w-full lg:max-w-[640px] mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-white/5 to-transparent p-4 sm:p-5 md:bg-slate-900/40 md:backdrop-blur-sm md:border md:border-white/10 md:p-8 lg:p-10 md:shadow-xl text-center">
               {/* HEADLINE */}
               <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2.125rem] sm:text-5xl lg:text-6xl font-bold leading-snug tracking-tight mb-5">
@@ -165,8 +152,7 @@ const Hero = () => {
                 busy or out living your life.
               </p>
 
-              {/* CTAs */}
-              {/* FIX: Equal widths + equal heights at sm+; prevent layout asymmetry */}
+              {/* CTAs (equal width + equal height at sm+) */}
               <div className="flex flex-col sm:flex-row sm:items-stretch justify-center gap-4 mb-5 sm:w-full sm:max-w-xl sm:mx-auto">
                 <button
                   type="button"
@@ -196,8 +182,7 @@ const Hero = () => {
                 Busy Does Not Mean Missed. Just WinStreams.
               </p>
 
-              {/* BENEFITS PILLS */}
-              {/* FIX: allow wrap starting at sm to avoid cramping on small tablets */}
+              {/* BENEFITS PILLS (Ghost pills + MAGENTA icons, NO inner circle wrapper) */}
               <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3">
                 {benefits.map((benefit) => {
                   const BenefitIcon = benefit.icon;
@@ -209,7 +194,8 @@ const Hero = () => {
                       <BenefitIcon
                         size={16}
                         weight="duotone"
-                        className="text-emerald-500 flex-shrink-0"
+                        className="text-brand-magenta flex-shrink-0"
+                        aria-hidden="true"
                       />
                       <span className="text-[13px] leading-snug text-slate-300">
                         {benefit.label}
@@ -221,8 +207,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          {/* OPTIMIZED: max-w-xl on tablet; lg:max-w-none on desktop */}
+          {/* RIGHT COLUMN (max-w-xl on tablet, fills column on lg+) */}
           <div className="w-full max-w-xl lg:max-w-none mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-5 sm:p-6 lg:p-10 md:shadow-2xl flex flex-col justify-between backdrop-blur">
             <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
               {/* NOTIFICATIONS STACK */}
@@ -282,7 +267,9 @@ const Hero = () => {
                           : "bg-emerald-500/10 text-emerald-200"
                       }`}
                     >
-                      <span className="text-[13px] font-semibold">{item.day}</span>
+                      <span className="text-[13px] font-semibold">
+                        {item.day}
+                      </span>
                       <span className="text-xs font-medium whitespace-nowrap">
                         {item.isOpen ? "Open" : `${item.jobs} Jobs`}
                       </span>

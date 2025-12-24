@@ -11,10 +11,8 @@ import {
 } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 
-// Type-safe notification color (no type casting needed)
+// Type-safe notification colors
 type NotifColor = "amber" | "blue" | "emerald" | "purple";
-
-// Use Phosphor's Icon type directly
 type IconComponent = Icon;
 
 interface Notification {
@@ -35,7 +33,7 @@ interface Benefit {
 const Hero = () => {
   const navigate = useNavigate();
 
-  // NOTIFICATIONS DATA
+  // Notifications (Right Column)
   const notifications: Notification[] = [
     {
       id: "incoming",
@@ -71,7 +69,7 @@ const Hero = () => {
     },
   ];
 
-  // WEEKLY JOBS DATA (Thursday label fixed to "Th")
+  // Weekly jobs (Right Column) — fixed Thursday label "Th"
   const weeklyJobs = [
     { id: "mon", day: "M", jobs: 3 },
     { id: "tue", day: "T", jobs: 2 },
@@ -82,7 +80,7 @@ const Hero = () => {
     { id: "sun", day: "S", jobs: 2 },
   ];
 
-  // BENEFITS PILLS DATA (Home Hero content preserved)
+  // Benefits pills (Left Column) — Home hero content
   const benefits: Benefit[] = [
     { id: "learn", icon: Sparkle, label: "AI Learns Your Business" },
     { id: "calendar", icon: CalendarCheck, label: "New Leads on Your Calendar" },
@@ -91,7 +89,7 @@ const Hero = () => {
 
   const totalJobs = weeklyJobs.reduce((sum, day) => sum + day.jobs, 0);
 
-  // COLOR MAP (type-safe lookups)
+  // Notification color map
   const colorMap = {
     amber: {
       text: "text-amber-400",
@@ -123,8 +121,8 @@ const Hero = () => {
   >;
 
   const scrollToHowItWorks = () => {
-    const element = document.getElementById("how-it-works");
-    if (element) element.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById("how-it-works");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleCTAClick = () => {
@@ -137,23 +135,23 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* LEFT COLUMN */}
           <div className="w-full max-w-2xl lg:max-w-none mx-auto lg:mx-0">
-            {/* Ghost gradient mobile, frosted md+ */}
             <div className="w-full lg:max-w-[640px] mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-white/5 to-transparent p-4 sm:p-5 md:bg-slate-900/40 md:backdrop-blur-sm md:border md:border-white/10 md:p-8 lg:p-10 md:shadow-xl text-center">
-              {/* HEADLINE */}
+              {/* Headline */}
               <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2.125rem] sm:text-5xl lg:text-6xl font-bold leading-snug tracking-tight mb-5">
                 <span className="text-white">Turn Missed Calls Into </span>
                 <span className="text-brand-magenta">Booked&nbsp;Jobs</span>
               </h1>
 
-              {/* SUBHEAD */}
+              {/* Subhead */}
               <p className="text-[15px] sm:text-base lg:text-xl text-slate-300/90 mb-6 leading-[1.65] md:leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
                 Your AI Receptionist talks to clients, qualifies them, and books
                 appointments straight into your calendar 24/7 — even when you're
                 busy or out living your life.
               </p>
 
-              {/* CTAs (equal width + equal height at sm+) */}
+              {/* CTAs */}
               <div className="flex flex-col sm:flex-row sm:items-stretch justify-center gap-4 mb-5 sm:w-full sm:max-w-xl sm:mx-auto">
+                {/* Primary CTA */}
                 <button
                   type="button"
                   onClick={handleCTAClick}
@@ -167,11 +165,12 @@ const Hero = () => {
                   />
                 </button>
 
+                {/* Secondary CTA — SOLID NAVY + SAFE HOVER */}
                 <button
                   type="button"
                   onClick={scrollToHowItWorks}
                   aria-label="See how our AI receptionist works"
-                  className="w-full sm:flex-1 sm:min-w-0 inline-flex items-center justify-center gap-2 bg-white/10 text-white border-2 border-white/20 md:bg-white md:text-brand-navy md:border-2 md:border-brand-navy font-medium px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full leading-none whitespace-nowrap min-h-[52px] md:min-h-[56px] transition-all duration-300 md:hover:bg-brand-navy md:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                  className="w-full sm:flex-1 sm:min-w-0 inline-flex items-center justify-center gap-2 bg-brand-navy text-white border-2 border-brand-navy font-semibold px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full leading-none whitespace-nowrap min-h-[52px] md:min-h-[56px] transition-all duration-300 active:scale-95 md:hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   See How It Works
                   <ChevronDown className="w-5 h-5" aria-hidden="true" />
@@ -182,7 +181,7 @@ const Hero = () => {
                 Busy Does Not Mean Missed. Just WinStreams.
               </p>
 
-              {/* BENEFITS PILLS (Ghost pills + MAGENTA icons, NO inner circle wrapper) */}
+              {/* BENEFITS PILLS — Home hero style (no inner circle wrapper) */}
               <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3">
                 {benefits.map((benefit) => {
                   const BenefitIcon = benefit.icon;
@@ -192,7 +191,7 @@ const Hero = () => {
                       className="flex items-center gap-3 rounded-full bg-white/5 border border-white/10 px-4 py-2.5 text-left"
                     >
                       <BenefitIcon
-                        size={16}
+                        size={18}
                         weight="duotone"
                         className="text-brand-magenta flex-shrink-0"
                         aria-hidden="true"
@@ -207,14 +206,15 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN (max-w-xl on tablet, fills column on lg+) */}
-          <div className="w-full max-w-xl lg:max-w-none mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-5 sm:p-6 lg:p-10 md:shadow-2xl flex flex-col justify-between backdrop-blur">
+          {/* RIGHT COLUMN */}
+          <div className="w-full max-w-xl lg:max-w-none mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur md:shadow-2xl">
             <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
-              {/* NOTIFICATIONS STACK */}
+              {/* Notification stack */}
               <div className="space-y-4">
                 {notifications.map((notif) => {
                   const colors = colorMap[notif.color];
                   const NotifIcon = notif.icon;
+
                   return (
                     <div
                       key={notif.id}
@@ -230,6 +230,7 @@ const Hero = () => {
                           aria-hidden="true"
                         />
                       </div>
+
                       <div className="flex-1 min-w-0">
                         <div
                           className={`text-[11px] font-semibold uppercase tracking-wide mb-0.5 ${colors.text}`}
@@ -240,6 +241,7 @@ const Hero = () => {
                           {notif.title}
                         </div>
                       </div>
+
                       <div
                         className={`flex-shrink-0 px-2 py-1 rounded-md text-[10px] font-bold uppercase ${colors.badge} ${colors.text}`}
                       >
@@ -250,11 +252,12 @@ const Hero = () => {
                 })}
               </div>
 
-              {/* WEEKLY STATS */}
+              {/* Weekly stats */}
               <div className="bg-slate-800/30 rounded-xl p-4">
                 <div className="text-base font-semibold text-slate-200 uppercase tracking-wide mb-3">
                   NEW JOBS BOOKED BY YOUR AI
                 </div>
+
                 <div className="grid grid-cols-7 gap-2 text-center text-[11px]">
                   {weeklyJobs.map((item) => (
                     <div
@@ -267,9 +270,7 @@ const Hero = () => {
                           : "bg-emerald-500/10 text-emerald-200"
                       }`}
                     >
-                      <span className="text-[13px] font-semibold">
-                        {item.day}
-                      </span>
+                      <span className="text-[13px] font-semibold">{item.day}</span>
                       <span className="text-xs font-medium whitespace-nowrap">
                         {item.isOpen ? "Open" : `${item.jobs} Jobs`}
                       </span>
@@ -278,7 +279,7 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* METRICS ROW */}
+              {/* Metrics row */}
               <div className="mt-6 pt-6 border-t border-slate-700">
                 <div className="grid grid-cols-4 gap-4">
                   <div className="flex flex-col items-center justify-start">
@@ -318,9 +319,10 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
+              {/* /Metrics */}
             </div>
           </div>
-          {/* END RIGHT COLUMN */}
+          {/* /RIGHT COLUMN */}
         </div>
       </div>
     </section>

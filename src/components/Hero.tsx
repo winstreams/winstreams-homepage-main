@@ -2,12 +2,37 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Phone, CalendarCheck, Moon, Bell, Sparkle, ShieldCheck } from "@phosphor-icons/react";
+import type { Icon } from "@phosphor-icons/react";
+
+// Type-safe notification color (no type casting needed)
+type NotifColor = "amber" | "blue" | "emerald" | "purple";
+
+// Use Phosphor's Icon type directly
+type IconComponent = Icon;
+
+interface Notification {
+  id: string;
+  icon: IconComponent;
+  title: string;
+  badge: string;
+  step: string;
+  color: NotifColor;
+}
+
+interface Benefit {
+  id: string;
+  icon: IconComponent;
+  label: string;
+}
 
 const Hero = () => {
   const navigate = useNavigate();
 
-  const notifications = [
+  // NOTIFICATIONS DATA
+  // Uses stable IDs and typed colors for React reconciliation safety
+  const notifications: Notification[] = [
     {
+      id: "incoming",
       icon: Phone,
       title: "Water heater emergency",
       badge: "Captured",
@@ -15,6 +40,7 @@ const Hero = () => {
       color: "amber",
     },
     {
+      id: "qualified",
       icon: ShieldCheck,
       title: "Same-day confirmed",
       badge: "Qualified",
@@ -22,6 +48,7 @@ const Hero = () => {
       color: "blue",
     },
     {
+      id: "booked",
       icon: CalendarCheck,
       title: "Thu @ 2PM • $380 approved",
       badge: "Booked",
@@ -29,6 +56,7 @@ const Hero = () => {
       color: "emerald",
     },
     {
+      id: "notified",
       icon: Bell,
       title: "You receive a new job alert",
       badge: "Notified",
@@ -37,57 +65,61 @@ const Hero = () => {
     },
   ];
 
+  // WEEKLY JOBS DATA
+  // Fixed Thursday label from "T" to "Th" for clarity
   const weeklyJobs = [
-    { day: "M", jobs: 3 },
-    { day: "T", jobs: 2 },
-    { day: "W", jobs: 3 },
-    { day: "T", jobs: 2 },
-    { day: "F", jobs: 2 },
-    { day: "S", jobs: 0, isOpen: true },
-    { day: "S", jobs: 2 },
+    { id: "mon", day: "M", jobs: 3 },
+    { id: "tue", day: "T", jobs: 2 },
+    { id: "wed", day: "W", jobs: 3 },
+    { id: "thu", day: "Th", jobs: 2 },
+    { id: "fri", day: "F", jobs: 2 },
+    { id: "sat", day: "S", jobs: 0, isOpen: true },
+    { id: "sun", day: "S", jobs: 2 },
+  ];
+
+  // BENEFITS PILLS DATA
+  // Stable IDs for copy-change resilience
+  const benefits: Benefit[] = [
+    { id: "learn", icon: Sparkle, label: "AI Learns Your Business" },
+    { id: "calendar", icon: CalendarCheck, label: "New Leads on Your Calendar" },
+    { id: "sleep", icon: Moon, label: "Books While You Sleep" },
   ];
 
   const totalJobs = weeklyJobs.reduce((sum, day) => sum + day.jobs, 0);
 
-  const getColorClasses = (color: string) => {
-    switch (color) {
-      case "amber":
-        return {
-          text: "text-amber-400",
-          bg: "bg-amber-900/40",
-          border: "border-amber-500/20",
-          badge: "bg-amber-500/20",
-        };
-      case "blue":
-        return {
-          text: "text-blue-400",
-          bg: "bg-blue-900/40",
-          border: "border-blue-500/20",
-          badge: "bg-blue-500/20",
-        };
-      case "emerald":
-        return {
-          text: "text-emerald-400",
-          bg: "bg-emerald-900/40",
-          border: "border-emerald-500/20",
-          badge: "bg-emerald-500/20",
-        };
-      case "purple":
-        return {
-          text: "text-purple-400",
-          bg: "bg-purple-900/40",
-          border: "border-purple-500/20",
-          badge: "bg-purple-500/20",
-        };
-      default:
-        return {
-          text: "text-slate-400",
-          bg: "bg-slate-500/10",
-          border: "border-slate-500/20",
-          badge: "bg-slate-500/20",
-        };
-    }
-  };
+  // COLOR MAP
+  // Type-safe object-based lookups with satisfies for extra safety
+  const colorMap = {
+    amber: {
+      text: "text-amber-400",
+      bg: "bg-amber-900/40",
+      border: "border-amber-500/20",
+      badge: "bg-amber-500/20",
+    },
+    blue: {
+      text: "text-blue-400",
+      bg: "bg-blue-900/40",
+      border: "border-blue-500/20",
+      badge: "bg-blue-500/20",
+    },
+    emerald: {
+      text: "text-emerald-400",
+      bg: "bg-emerald-900/40",
+      border: "border-emerald-500/20",
+      badge: "bg-emerald-500/20",
+    },
+    purple: {
+      text: "text-purple-400",
+      bg: "bg-purple-900/40",
+      border: "border-purple-500/20",
+      badge: "bg-purple-500/20",
+    },
+  } as const satisfies Record<NotifColor, {
+    text: string;
+    bg: string;
+    border: string;
+    badge: string;
+  }>;
 
   const scrollToHowItWorks = () => {
     const element = document.getElementById("how-it-works");
@@ -101,86 +133,89 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-slate-950 overflow-hidden min-h-[85vh] flex items-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 md:py-20 lg:py-24">
+    <section className="relative bg-slate-950 overflow-hidden py-12 sm:py-16 md:min-h-[85vh] md:flex md:items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-14 items-center">
           
           {/* LEFT COLUMN */}
-          <div className="w-full max-w-none md:max-w-2xl mx-auto lg:mx-0 bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
+          <div className="w-full max-w-none md:max-w-2xl mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-white/5 to-transparent p-4 sm:p-5 md:bg-slate-900/40 md:backdrop-blur-sm md:border md:border-white/10 md:p-8 lg:p-10 md:shadow-xl text-center">
+            
+            {/* HEADLINE */}
+            {/* max-w-[18ch] prevents awkward wrapping on narrow screens */}
+            {/* text-[2.125rem] matches Services Hero mobile scale */}
+            <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2.125rem] sm:text-5xl md:text-6xl font-bold leading-snug tracking-tight mb-5">
               <span className="text-white">Turn Missed Calls Into </span>
-              <span className="text-brand-magenta">Booked Jobs</span>
+              {/* &nbsp; prevents "Booked" and "Jobs" from splitting */}
+              <span className="text-brand-magenta">Booked&nbsp;Jobs</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed">
+            {/* SUBHEAD */}
+            <p className="text-[15px] sm:text-base md:text-xl text-slate-300/90 mb-6 leading-[1.65] md:leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
               Your AI Receptionist talks to clients, qualifies them, and books appointments straight into your calendar 24/7 — even when you're busy or out living your life.
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+            {/* CTAs - PIXEL-PERFECT ALIGNMENT */}
+            {/* Fixed height (h-12 md:h-14) eliminates mobile height drift */}
+            {/* Both buttons have border-2 for identical border thickness */}
+            {/* Secondary matches Services Hero (navy border + subtle dark fill) */}
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-5">
               <button
                 type="button"
                 onClick={handleCTAClick}
                 aria-label="Book a strategy call"
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-brand-magenta text-white font-semibold px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-brand-magenta/20 hover:shadow-xl hover:shadow-brand-magenta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="w-full sm:w-auto group inline-flex h-12 md:h-14 items-center justify-center gap-2 rounded-full border-2 border-transparent bg-brand-magenta px-6 md:px-8 text-base md:text-lg font-semibold text-white leading-none whitespace-nowrap transition-all duration-300 active:scale-95 shadow-lg shadow-brand-magenta/20 md:hover:scale-105 md:hover:shadow-xl md:hover:shadow-brand-magenta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
-                Book Strategy Call
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                <span className="leading-none whitespace-nowrap">Book Strategy Call</span>
+                <ArrowRight className="w-5 h-5 md:group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </button>
 
               <button
                 type="button"
                 onClick={scrollToHowItWorks}
                 aria-label="See how our AI receptionist works"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-brand-navy font-medium px-8 py-4 text-lg rounded-full border-2 border-brand-navy hover:bg-brand-navy hover:text-white transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="w-full sm:w-auto inline-flex h-12 md:h-14 items-center justify-center gap-2 rounded-full border-2 border-brand-navy/50 bg-white/5 px-6 md:px-8 text-base md:text-lg font-medium text-white leading-none whitespace-nowrap transition-all duration-300 md:hover:bg-brand-navy md:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
-                See How It Works
-                <ChevronDown className="w-4 h-4 ml-1" aria-hidden="true" />
+                <span className="leading-none whitespace-nowrap">See How It Works</span>
+                <ChevronDown className="w-5 h-5" aria-hidden="true" />
               </button>
             </div>
 
-            <p className="text-sm md:text-base text-slate-300 italic mb-8">
+            <p className="text-sm md:text-base text-slate-300 italic mb-6">
               Busy Does Not Mean Missed. Just WinStreams.
             </p>
 
-            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-slate-300">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                  <Sparkle size={20} weight="duotone" className="text-emerald-500" />
-                </div>
-                <span>AI Learns Your Business</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                  <CalendarCheck size={20} weight="duotone" className="text-emerald-500" />
-                </div>
-                <span>New Leads on Your Calendar</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center">
-                  <Moon size={20} weight="duotone" className="text-emerald-500" />
-                </div>
-                <span>Books While You Sleep</span>
-              </div>
+            {/* BENEFITS PILLS */}
+            {/* Stable IDs for copy-change resilience */}
+            <div className="mx-auto max-w-sm space-y-3">
+              {benefits.map((benefit) => {
+                const BenefitIcon = benefit.icon;
+                return (
+                  <div key={benefit.id} className="flex items-center gap-3 rounded-full bg-white/5 border border-white/10 px-4 py-2.5 text-left">
+                    <BenefitIcon size={16} weight="duotone" className="text-emerald-500 flex-shrink-0" />
+                    <span className="text-[13px] leading-snug text-slate-300">{benefit.label}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div className="w-full max-w-lg mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur">
+          {/* RIGHT COLUMN - VISUAL */}
+          <div className="w-full max-w-lg mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-5 sm:p-6 md:p-8 lg:p-10 lg:min-h-[620px] flex flex-col justify-between backdrop-blur">
             <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
               
+              {/* NOTIFICATIONS STACK */}
               <div className="space-y-4">
-                {notifications.map((notif, idx) => {
-                  const colors = getColorClasses(notif.color);
+                {notifications.map((notif) => {
+                  // Type-safe color lookup (no casting needed)
+                  const colors = colorMap[notif.color];
                   const NotifIcon = notif.icon;
                   return (
                     <div
-                      key={idx}
+                      key={notif.id}
                       className={`flex items-start gap-3 rounded-2xl p-3 border ${colors.bg} ${colors.border}`}
                     >
                       <div className={`flex-shrink-0 w-8 h-8 rounded-lg ${colors.bg} flex items-center justify-center`}>
-                        <NotifIcon size={18} weight="duotone" className={colors.text} aria-hidden="true" />
+                        <NotifIcon size={18} weight="duotone" className={colors.text} aria-hidden />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className={`text-[11px] font-semibold uppercase tracking-wide mb-0.5 ${colors.text}`}>
@@ -196,14 +231,15 @@ const Hero = () => {
                 })}
               </div>
 
+              {/* WEEKLY STATS */}
               <div className="bg-slate-800/30 rounded-xl p-4">
                 <div className="text-base font-semibold text-slate-200 uppercase tracking-wide mb-3">
                   NEW JOBS BOOKED BY YOUR AI
                 </div>
                 <div className="grid grid-cols-7 gap-2 text-center text-[11px]">
-                  {weeklyJobs.map((item, idx) => (
+                  {weeklyJobs.map((item) => (
                     <div
-                      key={idx}
+                      key={item.id}
                       className={`flex flex-col gap-1 items-center justify-center rounded-lg px-2 py-3 ${
                         item.isOpen
                           ? "border border-dashed border-slate-600 text-slate-500"
@@ -212,7 +248,8 @@ const Hero = () => {
                           : "bg-emerald-500/10 text-emerald-200"
                       }`}
                     >
-                      <span className="text-sm font-semibold">{item.day}</span>
+                      {/* Adjusted font size to accommodate "Th" label */}
+                      <span className="text-[13px] font-semibold">{item.day}</span>
                       <span className="text-xs font-medium whitespace-nowrap">
                         {item.isOpen ? "Open" : `${item.jobs} Jobs`}
                       </span>
@@ -221,6 +258,7 @@ const Hero = () => {
                 </div>
               </div>
 
+              {/* METRICS ROW */}
               <div className="mt-6 pt-6 border-t border-slate-700">
                 <div className="grid grid-cols-4 gap-4">
                   <div className="flex flex-col items-center justify-start">

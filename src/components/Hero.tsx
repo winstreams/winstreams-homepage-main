@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
-import { Phone, CalendarCheck, Moon, Bell, Sparkle, ShieldCheck } from "@phosphor-icons/react";
+import { Phone, CalendarCheck, Moon, Bell, Sparkle, ShieldCheck, ClockCounterClockwise, BellRinging, Waveform } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 
 // Type-safe notification color (no type casting needed)
@@ -22,14 +22,14 @@ interface Notification {
 interface Benefit {
   id: string;
   icon: IconComponent;
-  title: string;
-  subtitle: string;
+  text: string;
 }
 
 const Hero = () => {
   const navigate = useNavigate();
 
   // NOTIFICATIONS DATA
+  // Uses stable IDs and typed colors for React reconciliation safety
   const notifications: Notification[] = [
     {
       id: "incoming",
@@ -66,6 +66,7 @@ const Hero = () => {
   ];
 
   // WEEKLY JOBS DATA
+  // Fixed Thursday label from "T" to "Th" for clarity
   const weeklyJobs = [
     { id: "mon", day: "M", jobs: 3 },
     { id: "tue", day: "T", jobs: 2 },
@@ -76,31 +77,18 @@ const Hero = () => {
     { id: "sun", day: "S", jobs: 2 },
   ];
 
-  // BENEFITS DATA - EXACT icon colors from Services Hero
+  // BENEFITS PILLS DATA
+  // Stable IDs for copy-change resilience
   const benefits: Benefit[] = [
-    { 
-      id: "time", 
-      icon: Phone, 
-      title: "Take Back Your Time —",
-      subtitle: "One Call at a Time"
-    },
-    { 
-      id: "focus", 
-      icon: Bell, 
-      title: "Stay Focused Without",
-      subtitle: "Constant Interruptions"
-    },
-    { 
-      id: "noise", 
-      icon: Sparkle, 
-      title: "Let AI Handle the Noise So",
-      subtitle: "You Don't Have To"
-    },
+    { id: "time", icon: ClockCounterClockwise, text: "Take Back Your Time — One Call at a Time" },
+    { id: "focus", icon: BellRinging, text: "Stay Focused Without Constant Interruptions" },
+    { id: "noise", icon: Waveform, text: "Let AI Handle the Noise So You Don't Have To" },
   ];
 
   const totalJobs = weeklyJobs.reduce((sum, day) => sum + day.jobs, 0);
 
   // COLOR MAP
+  // Type-safe object-based lookups with satisfies for extra safety
   const colorMap = {
     amber: {
       text: "text-amber-400",
@@ -145,82 +133,85 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-slate-950 overflow-hidden py-16 sm:py-20 md:min-h-[85vh] md:flex md:items-center">
+    <section className="relative bg-slate-950 overflow-hidden py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-14 items-center">
           
           {/* LEFT COLUMN */}
-          <div className="w-full max-w-none md:max-w-2xl mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-white/5 to-transparent p-4 sm:p-5 md:bg-slate-900/40 md:backdrop-blur-sm md:border md:border-white/10 md:p-8 lg:p-10 md:shadow-xl text-center">
-            
-            {/* HEADLINE - Slightly smaller than Services (2.5rem vs 2.75rem) */}
-            <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2.5rem] sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-5">
-              <span className="text-white">Turn Missed Calls Into </span>
-              <span className="text-brand-magenta">Booked&nbsp;Jobs</span>
-            </h1>
+          <div className="w-full max-w-4xl mx-auto lg:mx-0">
+            {/* Frosted Glass Panel */}
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 shadow-xl text-center">
+              
+              {/* HEADLINE */}
+              {/* text-4xl sm:text-5xl md:text-6xl matches Services Hero */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
+                <span className="text-white">Turn Missed Calls Into </span>
+                {/* &nbsp; prevents "Booked" and "Jobs" from splitting */}
+                <span className="text-brand-magenta">Booked&nbsp;Jobs</span>
+              </h1>
 
-            {/* SUBHEAD - Match Services Hero size (text-base on mobile) */}
-            <p className="text-base sm:text-lg md:text-xl text-slate-300/90 mb-8 leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
-              Your AI Receptionist talks to clients, qualifies them, and books appointments straight into your calendar 24/7 — even when you're busy or out living your life.
-            </p>
+              {/* SUBHEAD */}
+              {/* text-lg md:text-xl matches Services Hero */}
+              <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl mx-auto">
+                Your AI Receptionist talks to clients, qualifies them, and books appointments straight into your calendar 24/7 — even when you're busy or out living your life.
+              </p>
 
-            {/* CTAs - EXACT Services Hero sizing */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-              <button
-                type="button"
-                onClick={handleCTAClick}
-                aria-label="Book a strategy call"
-                className="w-full sm:w-auto group inline-flex h-12 md:h-14 items-center justify-center gap-2 rounded-full border-2 border-transparent bg-brand-magenta px-6 md:px-8 text-base md:text-lg font-semibold text-white leading-none whitespace-nowrap transition-all duration-300 active:scale-95 shadow-lg shadow-brand-magenta/20 md:hover:scale-105 md:hover:shadow-xl md:hover:shadow-brand-magenta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-              >
-                <span className="leading-none whitespace-nowrap">Book Strategy Call</span>
-                <ArrowRight className="w-5 h-5 md:group-hover:translate-x-1 transition-transform" aria-hidden />
-              </button>
+              {/* CTAs */}
+              {/* px-8 py-4 text-lg matches Services Hero */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <button
+                  type="button"
+                  onClick={handleCTAClick}
+                  aria-label="Book a strategy call"
+                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 rounded-full bg-brand-magenta px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-brand-magenta/20 hover:scale-105 hover:shadow-xl hover:shadow-brand-magenta/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-magenta focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-95"
+                >
+                  Book Strategy Call
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden />
+                </button>
 
-              <button
-                type="button"
-                onClick={scrollToHowItWorks}
-                aria-label="See how our AI receptionist works"
-                className="w-full sm:w-auto inline-flex h-12 md:h-14 items-center justify-center gap-2 rounded-full border-2 border-brand-navy/50 bg-white/5 px-6 md:px-8 text-base md:text-lg font-medium text-white leading-none whitespace-nowrap transition-all duration-300 md:hover:bg-brand-navy md:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
-              >
-                <span className="leading-none whitespace-nowrap">See How It Works</span>
-                <ChevronDown className="w-5 h-5" aria-hidden />
-              </button>
-            </div>
+                <button
+                  type="button"
+                  onClick={scrollToHowItWorks}
+                  aria-label="See how our AI receptionist works"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-navy text-white px-8 py-4 text-lg font-medium hover:bg-brand-navy hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-slate-950"
+                >
+                  See How It Works
+                  <ChevronDown className="w-5 h-5" aria-hidden />
+                </button>
+              </div>
 
-            {/* TAGLINE - EXACT Services Hero style */}
-            <p className="text-sm md:text-base text-slate-300 font-medium mb-8 italic">
-              Busy Does Not Mean Missed. Just WinStreams.
-            </p>
+              {/* TAGLINE */}
+              {/* text-slate-400 italic matches Services Hero */}
+              <p className="text-slate-400 italic text-base mb-8">
+                Busy Does Not Mean Missed. Just WinStreams.
+              </p>
 
-            {/* BENEFITS - EXACT Services Hero colors (magenta icons) */}
-            <div className="mx-auto max-w-md space-y-3">
-              {benefits.map((benefit) => {
-                const BenefitIcon = benefit.icon;
-                return (
-                  <div key={benefit.id} className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-4 text-left">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-magenta/10 flex items-center justify-center">
-                      <BenefitIcon size={24} weight="duotone" className="text-brand-magenta" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-white leading-tight">
-                        {benefit.title}
+              {/* BENEFITS - Services Hero style (horizontal pills) */}
+              {/* bg-slate-800/50 with bg-brand-magenta/20 icon circles */}
+              <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6">
+                {benefits.map((benefit) => {
+                  const BenefitIcon = benefit.icon;
+                  return (
+                    <div key={benefit.id} className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
+                      <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
+                        <BenefitIcon size={18} weight="duotone" className="text-brand-magenta" />
                       </div>
-                      <div className="text-sm text-slate-400 leading-tight mt-0.5">
-                        {benefit.subtitle}
-                      </div>
+                      <span className="text-sm text-slate-300 font-medium">{benefit.text}</span>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
 
-          {/* RIGHT COLUMN - FIXED OVERFLOW */}
+          {/* RIGHT COLUMN - DASHBOARD VISUAL */}
           <div className="w-full max-w-lg mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-4 sm:p-6 md:p-8 lg:p-10 lg:min-h-[620px] flex flex-col justify-between backdrop-blur">
             <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
               
               {/* NOTIFICATIONS STACK */}
               <div className="space-y-3">
                 {notifications.map((notif) => {
+                  // Type-safe color lookup (no casting needed)
                   const colors = colorMap[notif.color];
                   const NotifIcon = notif.icon;
                   return (
@@ -262,6 +253,7 @@ const Hero = () => {
                           : "bg-emerald-500/10 text-emerald-200"
                       }`}
                     >
+                      {/* Adjusted font size to accommodate "Th" label */}
                       <span className="text-xs font-semibold">{item.day}</span>
                       <span className="text-[9px] font-medium whitespace-nowrap">
                         {item.isOpen ? "Open" : `${item.jobs} Jobs`}

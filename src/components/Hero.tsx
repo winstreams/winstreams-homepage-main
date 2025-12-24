@@ -76,7 +76,7 @@ const Hero = () => {
     { id: "sun", day: "S", jobs: 2 },
   ];
 
-  // BENEFITS DATA (Services Hero style - with icon circles + two-line text)
+  // BENEFITS DATA - EXACT icon colors from Services Hero
   const benefits: Benefit[] = [
     { 
       id: "time", 
@@ -159,12 +159,12 @@ const Hero = () => {
             </h1>
 
             {/* SUBHEAD */}
-            <p className="text-[15px] sm:text-base md:text-xl text-slate-300/90 mb-6 leading-[1.65] md:leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
+            <p className="text-[15px] sm:text-base md:text-xl text-slate-300/90 mb-8 leading-[1.65] md:leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
               Your AI Receptionist talks to clients, qualifies them, and books appointments straight into your calendar 24/7 — even when you're busy or out living your life.
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-5">
+            {/* CTAs - EXACT Services Hero sizing */}
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
               <button
                 type="button"
                 onClick={handleCTAClick}
@@ -186,21 +186,19 @@ const Hero = () => {
               </button>
             </div>
 
-            {/* TAGLINE - Refined: sm text-base (one size smaller) + font-medium (not bold, not regular) */}
-            <p className="text-sm md:text-base text-slate-300 font-medium mb-6">
+            {/* TAGLINE - EXACT Services Hero style */}
+            <p className="text-sm md:text-base text-slate-300 font-medium mb-8 italic">
               Busy Does Not Mean Missed. Just WinStreams.
             </p>
 
-            {/* BENEFITS - Services Hero Style with SUBTLE icon colors */}
-            {/* Icon background: magenta/10 → slate/10 (more neutral) */}
-            {/* Icon color: brand-magenta → slate-400 (softer, doesn't compete with CTAs) */}
+            {/* BENEFITS - EXACT Services Hero colors (magenta icons) */}
             <div className="mx-auto max-w-md space-y-3">
               {benefits.map((benefit) => {
                 const BenefitIcon = benefit.icon;
                 return (
                   <div key={benefit.id} className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-4 text-left">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-slate-800/50 flex items-center justify-center">
-                      <BenefitIcon size={24} weight="duotone" className="text-slate-400" />
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-brand-magenta/10 flex items-center justify-center">
+                      <BenefitIcon size={24} weight="duotone" className="text-brand-magenta" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-sm font-semibold text-white leading-tight">

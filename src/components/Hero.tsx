@@ -127,12 +127,12 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-slate-950 overflow-hidden py-20 lg:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-slate-950 overflow-hidden py-16 lg:py-28">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* LEFT COLUMN - Hero Card */}
-          <div className="w-full max-w-4xl lg:max-w-none mx-auto lg:mx-0">
-            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 shadow-xl text-center">
+          <div className="w-full lg:max-w-none">
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 md:p-12 shadow-xl text-center">
               {/* HEADLINE */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
                 <span className="text-white">Turn Missed Calls Into </span>
@@ -146,14 +146,14 @@ const Hero = () => {
                 busy or out living your life.
               </p>
 
-              {/* CTAs - Simplified shorter text */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch mb-8">
+              {/* CTAs - Narrower on mobile */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch mb-8 max-w-lg sm:max-w-none mx-auto">
                 {/* Primary CTA */}
                 <button
                   type="button"
                   onClick={handleCTAClick}
                   aria-label="Book a strategy call"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-magenta px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-brand-magenta/20 hover:scale-105 hover:shadow-xl hover:shadow-brand-magenta/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-magenta focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-95 whitespace-nowrap"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-magenta px-6 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg font-semibold text-white shadow-lg shadow-brand-magenta/20 hover:scale-105 hover:shadow-xl hover:shadow-brand-magenta/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-magenta focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-95 whitespace-nowrap"
                 >
                   Book Strategy Call
                   <ArrowRight
@@ -167,7 +167,7 @@ const Hero = () => {
                   type="button"
                   onClick={scrollToHowItWorks}
                   aria-label="See how our AI receptionist works"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-navy bg-white text-brand-navy px-8 py-4 text-lg font-medium hover:bg-brand-navy hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-slate-950 whitespace-nowrap"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-navy bg-white text-brand-navy px-6 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg font-medium hover:bg-brand-navy hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-slate-950 whitespace-nowrap"
                 >
                   How It Works
                   <ChevronDown className="w-5 h-5" aria-hidden="true" />
@@ -179,32 +179,36 @@ const Hero = () => {
                 Busy Does Not Mean Missed. Just WinStreams.
               </p>
 
-              {/* Benefits Pills - Better wrapping for desktop */}
-              <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
-                <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
-                  <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
-                    <Sparkle size={18} weight="duotone" className="text-brand-magenta" />
+              {/* Benefits Pills - 2 on top row, 1 on bottom */}
+              <div className="flex flex-col items-center gap-3">
+                {/* Top row - 2 pills */}
+                <div className="flex flex-wrap justify-center gap-3">
+                  <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/10">
+                    <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
+                      <Sparkle size={18} weight="duotone" className="text-brand-magenta" />
+                    </div>
+                    <span className="text-sm text-slate-300 font-medium whitespace-nowrap">AI Learns Your Business</span>
                   </div>
-                  <span className="text-sm text-slate-300 font-medium whitespace-nowrap">AI Learns Your Business</span>
+                  <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/10">
+                    <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
+                      <Moon size={18} weight="duotone" className="text-brand-magenta" />
+                    </div>
+                    <span className="text-sm text-slate-300 font-medium whitespace-nowrap">Books While You Sleep</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
+                {/* Bottom row - 1 pill */}
+                <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/10">
                   <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
                     <CalendarCheck size={18} weight="duotone" className="text-brand-magenta" />
                   </div>
                   <span className="text-sm text-slate-300 font-medium whitespace-nowrap">New Leads on Your Calendar</span>
-                </div>
-                <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
-                  <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
-                    <Moon size={18} weight="duotone" className="text-brand-magenta" />
-                  </div>
-                  <span className="text-sm text-slate-300 font-medium whitespace-nowrap">Books While You Sleep</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* RIGHT COLUMN - Dashboard */}
-          <div className="w-full max-w-xl lg:max-w-none mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-6 sm:p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur md:shadow-2xl">
+          <div className="w-full lg:max-w-none rounded-3xl bg-slate-900/60 border border-white/10 p-6 sm:p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur md:shadow-2xl">
             <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
               {/* Notification stack */}
               <div className="space-y-4">

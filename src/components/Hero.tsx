@@ -85,7 +85,10 @@ const Hero = () => {
 
   const totalJobs = weeklyJobs.reduce((sum, day) => sum + day.jobs, 0);
 
-  const colorMap: Record<NotifColor, { text: string; bg: string; border: string; badge: string }> = {
+  const colorMap: Record<
+    NotifColor,
+    { text: string; bg: string; border: string; badge: string }
+  > = {
     amber: {
       text: "text-amber-400",
       bg: "bg-amber-900/40",
@@ -122,149 +125,204 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-slate-950 overflow-hidden py-16 lg:py-28">
-      {/* CRITICAL: Proper mobile padding to prevent overflow */}
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* LEFT COLUMN - Hero Card */}
-          <div className="w-full">
-            {/* CRITICAL: Reduced mobile padding inside card */}
-            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-8 md:p-12 shadow-xl text-center">
-              {/* HEADLINE */}
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
-                <span className="text-white">Turn Missed Calls Into </span>
-                <span className="text-brand-magenta">Booked Jobs</span>
-              </h1>
+    <section className="relative bg-slate-950 overflow-hidden py-12 sm:py-16 lg:py-24 md:min-h-[85vh] md:flex md:items-center">
+      {/* Stable padding to prevent mobile overflow */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* NOTE: lg:items-stretch makes both columns equal height on desktop */}
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+          {/* LEFT COLUMN */}
+          <div className="w-full max-w-2xl lg:max-w-none mx-auto lg:mx-0 h-full">
+            <div className="w-full lg:max-w-[640px] mx-auto lg:mx-0 h-full">
+              {/* Hero Card: ghost gradient mobile, frosted md+ */}
+              <div className="h-full rounded-2xl bg-gradient-to-b from-white/5 to-transparent p-4 sm:p-5 md:bg-slate-900/40 md:backdrop-blur-sm md:border md:border-white/10 md:p-8 lg:p-10 md:shadow-xl text-center flex flex-col">
+                {/* HEADLINE (slightly reduced mobile sizing already) */}
+                <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2rem] sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.15] tracking-tight mb-5">
+                  <span className="text-white">Turn Missed Calls Into </span>
+                  <span className="text-brand-magenta">Booked Jobs</span>
+                </h1>
 
-              {/* SUBHEAD */}
-              <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl mx-auto">
-                Your AI Receptionist talks to clients, qualifies them, and books
-                appointments straight into your calendar 24/7 — even when you're
-                busy or out living your life.
-              </p>
+                {/* SUBHEAD */}
+                <p className="text-[15px] sm:text-base lg:text-xl text-slate-300/90 mb-6 leading-[1.65] md:leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
+                  Your AI Receptionist talks to clients, qualifies them, and books
+                  appointments straight into your calendar 24/7 — even when you're
+                  busy or out living your life.
+                </p>
 
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                <button
-                  type="button"
-                  onClick={handleCTAClick}
-                  aria-label="Book a strategy call"
-                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 rounded-full bg-brand-magenta px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-brand-magenta/20 hover:scale-105 hover:shadow-xl hover:shadow-brand-magenta/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-magenta focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-95 whitespace-nowrap"
-                >
-                  Book Strategy Call
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                </button>
+                {/* CTAs */}
+                {/* FIX: mobile width clamp to match Services feel */}
+                <div className="flex flex-col sm:flex-row sm:items-stretch justify-center gap-4 mb-5 sm:w-full sm:max-w-xl sm:mx-auto">
+                  <button
+                    type="button"
+                    onClick={handleCTAClick}
+                    aria-label="Book a strategy call"
+                    className="w-full max-w-[320px] mx-auto sm:mx-0 sm:max-w-none sm:flex-1 sm:min-w-0 group inline-flex items-center justify-center gap-2 bg-brand-magenta text-white font-semibold px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full leading-none whitespace-nowrap min-h-[52px] md:min-h-[56px] transition-all duration-300 active:scale-95 shadow-lg shadow-brand-magenta/20 md:hover:scale-105 md:hover:shadow-xl md:hover:shadow-brand-magenta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                  >
+                    Book Strategy Call
+                    <ArrowRight
+                      className="w-5 h-5 md:group-hover:translate-x-1 transition-transform"
+                      aria-hidden="true"
+                    />
+                  </button>
 
-                <button
-                  type="button"
-                  onClick={scrollToHowItWorks}
-                  aria-label="See how our AI receptionist works"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-navy bg-white text-brand-navy px-8 py-4 text-lg font-medium hover:bg-brand-navy hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-slate-950 whitespace-nowrap"
-                >
-                  How It Works
-                  <ChevronDown className="w-5 h-5" aria-hidden="true" />
-                </button>
-              </div>
-
-              {/* Tagline */}
-              <p className="text-slate-400 italic text-base mb-8">
-                Busy Does Not Mean Missed. Just WinStreams.
-              </p>
-
-              {/* Benefits Pills */}
-              <div className="flex flex-col items-center gap-3 max-w-xl mx-auto">
-                <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
-                  <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/10">
-                    <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
-                      <Sparkle size={18} weight="duotone" className="text-brand-magenta" />
-                    </div>
-                    <span className="text-sm text-slate-300 font-medium whitespace-nowrap">AI Learns Your Business</span>
-                  </div>
-                  <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/10">
-                    <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
-                      <Moon size={18} weight="duotone" className="text-brand-magenta" />
-                    </div>
-                    <span className="text-sm text-slate-300 font-medium whitespace-nowrap">Books While You Sleep</span>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={scrollToHowItWorks}
+                    aria-label="See how our AI receptionist works"
+                    className="w-full max-w-[320px] mx-auto sm:mx-0 sm:max-w-none sm:flex-1 sm:min-w-0 inline-flex items-center justify-center gap-2 bg-white text-brand-navy border-2 border-brand-navy font-semibold px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full leading-none whitespace-nowrap min-h-[52px] md:min-h-[56px] transition-all duration-300 active:scale-95 md:hover:bg-brand-navyLight md:hover:text-white md:hover:border-brand-navyLight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                  >
+                    How It Works
+                    <ChevronDown className="w-5 h-5" aria-hidden="true" />
+                  </button>
                 </div>
-                <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/10">
-                  <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
-                    <CalendarCheck size={18} weight="duotone" className="text-brand-magenta" />
-                  </div>
-                  <span className="text-sm text-slate-300 font-medium whitespace-nowrap">New Leads on Your Calendar</span>
+
+                <p className="text-sm md:text-base text-slate-300 italic mb-6">
+                  Busy Does Not Mean Missed. Just WinStreams.
+                </p>
+
+                {/* BENEFITS PILLS */}
+                {/* FIX: mobile pill warp — center text, clamp width, remove nowrap */}
+                <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 mt-auto">
+                  {benefits.map((benefit) => {
+                    const BenefitIcon = benefit.icon;
+                    return (
+                      <div
+                        key={benefit.id}
+                        className="flex items-center justify-center gap-3 rounded-full bg-white/5 border border-white/10 px-4 py-2.5 text-center w-full max-w-[360px] mx-auto sm:mx-0 sm:w-auto"
+                      >
+                        <BenefitIcon
+                          size={18}
+                          weight="duotone"
+                          className="text-brand-magenta flex-shrink-0"
+                          aria-hidden="true"
+                        />
+                        <span className="text-[13px] leading-snug text-slate-300 text-center">
+                          {benefit.label}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT COLUMN - Dashboard */}
-          <div className="w-full rounded-3xl bg-slate-900/60 border border-white/10 p-5 sm:p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur md:shadow-2xl">
-            <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
-              {/* Notification stack */}
-              <div className="space-y-4">
-                {notifications.map((notif) => {
-                  const colors = colorMap[notif.color];
-                  const NotifIcon = notif.icon;
-                  return (
-                    <div key={notif.id} className={`flex items-start gap-3 rounded-2xl p-3 border ${colors.bg} ${colors.border}`}>
-                      <div className={`flex-shrink-0 w-8 h-8 rounded-lg ${colors.bg} flex items-center justify-center`}>
-                        <NotifIcon size={18} weight="duotone" className={colors.text} aria-hidden="true" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className={`text-xs font-semibold uppercase tracking-wide mb-0.5 ${colors.text}`}>
-                          {notif.step}
+          {/* RIGHT COLUMN */}
+          <div className="w-full max-w-xl lg:max-w-none mx-auto lg:mx-0 h-full">
+            {/* Keep min-height so content stays above fold; matches left due to items-stretch + h-full */}
+            <div className="h-full rounded-3xl bg-slate-900/60 border border-white/10 p-5 sm:p-6 lg:p-10 md:shadow-2xl flex flex-col justify-between backdrop-blur min-h-[580px] lg:min-h-[620px]">
+              <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
+                {/* NOTIFICATIONS */}
+                <div className="space-y-4">
+                  {notifications.map((notif) => {
+                    const colors = colorMap[notif.color];
+                    const NotifIcon = notif.icon;
+                    return (
+                      <div
+                        key={notif.id}
+                        className={`flex items-start gap-3 rounded-2xl p-3 border ${colors.bg} ${colors.border}`}
+                      >
+                        <div
+                          className={`flex-shrink-0 w-8 h-8 rounded-lg ${colors.bg} flex items-center justify-center`}
+                        >
+                          <NotifIcon
+                            size={18}
+                            weight="duotone"
+                            className={colors.text}
+                            aria-hidden="true"
+                          />
                         </div>
-                        <div className="text-sm text-white font-medium truncate">{notif.title}</div>
+
+                        <div className="flex-1 min-w-0">
+                          <div
+                            className={`text-[11px] font-semibold uppercase tracking-wide mb-0.5 ${colors.text}`}
+                          >
+                            {notif.step}
+                          </div>
+                          <div className="text-sm text-white font-medium truncate">
+                            {notif.title}
+                          </div>
+                        </div>
+
+                        <div
+                          className={`flex-shrink-0 px-2 py-1 rounded-md text-[10px] font-bold uppercase ${colors.badge} ${colors.text}`}
+                        >
+                          {notif.badge}
+                        </div>
                       </div>
-                      <div className={`flex-shrink-0 px-2 py-1 rounded-md text-[10px] font-bold uppercase ${colors.badge} ${colors.text}`}>
-                        {notif.badge}
+                    );
+                  })}
+                </div>
+
+                {/* WEEKLY STATS */}
+                <div className="bg-slate-800/30 rounded-xl p-4">
+                  <div className="text-base font-semibold text-slate-200 uppercase tracking-wide mb-3">
+                    NEW JOBS BOOKED BY YOUR AI
+                  </div>
+
+                  <div className="grid grid-cols-7 gap-2 text-center text-[11px]">
+                    {weeklyJobs.map((item) => (
+                      <div
+                        key={item.id}
+                        className={`flex flex-col gap-1 items-center justify-center rounded-lg px-2 py-3 ${
+                          item.isOpen
+                            ? "border border-dashed border-slate-600 text-slate-500"
+                            : item.jobs >= 3
+                            ? "bg-emerald-500/20 text-emerald-300"
+                            : "bg-emerald-500/10 text-emerald-200"
+                        }`}
+                      >
+                        <span className="text-[13px] font-semibold">{item.day}</span>
+                        <span className="text-xs font-medium whitespace-nowrap">
+                          {item.isOpen ? "Open" : `${item.jobs}`}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* METRICS ROW */}
+                {/* FIX: divide-x eliminates the "14 floats away" issue */}
+                <div className="mt-6 pt-6 border-t border-slate-700">
+                  <div className="grid grid-cols-4 divide-x divide-slate-700">
+                    <div className="flex flex-col items-center px-3 sm:px-4">
+                      <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-300/80 mb-2">
+                        {totalJobs}
+                      </div>
+                      <div className="text-xs text-slate-300 font-medium whitespace-nowrap">
+                        New Jobs
                       </div>
                     </div>
-                  );
-                })}
-              </div>
 
-              {/* Weekly stats */}
-              <div className="bg-slate-800/30 rounded-xl p-4 sm:p-5">
-                <div className="text-base font-semibold text-slate-200 uppercase tracking-wide mb-4">
-                  NEW JOBS BOOKED BY YOUR AI
-                </div>
-                <div className="grid grid-cols-7 gap-2 sm:gap-2.5 text-center">
-                  {weeklyJobs.map((item) => (
-                    <div
-                      key={item.id}
-                      className={`flex flex-col gap-1.5 items-center justify-center rounded-lg px-1.5 sm:px-2.5 py-3.5 sm:py-4 ${
-                        item.isOpen ? "border border-dashed border-slate-600 text-slate-500" : item.jobs >= 3 ? "bg-emerald-500/20 text-emerald-300" : "bg-emerald-500/10 text-emerald-200"
-                      }`}
-                    >
-                      <span className="text-sm sm:text-[15px] font-semibold">{item.day}</span>
-                      <span className="text-xs sm:text-[13px] font-medium whitespace-nowrap">{item.isOpen ? "Open" : item.jobs}</span>
+                    <div className="flex flex-col items-center px-3 sm:px-4">
+                      <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue-300 mb-2">
+                        92%
+                      </div>
+                      <div className="text-xs text-slate-300 font-medium whitespace-nowrap">
+                        Engaged
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Metrics row - FIXED ALIGNMENT */}
-              <div className="mt-6 pt-6 border-t border-slate-700">
-                <div className="grid grid-cols-4 gap-1.5">
-                  <div className="flex flex-col items-center justify-start">
-                    <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-300/80 mb-2">{totalJobs}</div>
-                    <div className="text-xs text-slate-300 font-medium whitespace-nowrap">New Jobs</div>
-                  </div>
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-1.5">
-                    <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue-300 mb-2">92%</div>
-                    <div className="text-xs text-slate-300 font-medium whitespace-nowrap">Engaged</div>
-                  </div>
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-1.5">
-                    <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-emerald-300 mb-2">$450</div>
-                    <div className="text-xs text-slate-300 font-medium whitespace-nowrap">Avg Value</div>
-                  </div>
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-1.5">
-                    <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-violet-300 mb-2">24/7</div>
-                    <div className="text-xs text-slate-300 font-medium whitespace-nowrap">Coverage</div>
+                    <div className="flex flex-col items-center px-3 sm:px-4">
+                      <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-emerald-300 mb-2">
+                        $450
+                      </div>
+                      <div className="text-xs text-slate-300 font-medium whitespace-nowrap">
+                        Avg Value
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col items-center px-3 sm:px-4">
+                      <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-violet-300 mb-2">
+                        24/7
+                      </div>
+                      <div className="text-xs text-slate-300 font-medium whitespace-nowrap">
+                        Coverage
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+              {/* end right inner */}
             </div>
           </div>
         </div>

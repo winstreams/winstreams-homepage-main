@@ -80,7 +80,7 @@ const Hero = () => {
     { id: "sun", day: "S", jobs: 2 },
   ];
 
-  // Benefits pills (Left Column) - matching Services page exactly
+  // Benefits pills (Left Column)
   const benefits: Benefit[] = [
     { id: "learn", icon: Sparkle, label: "AI Learns Your Business" },
     { id: "calendar", icon: CalendarCheck, label: "New Leads on Your Calendar" },
@@ -132,29 +132,28 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* LEFT COLUMN - Hero Card */}
           <div className="w-full max-w-4xl lg:max-w-none mx-auto lg:mx-0">
-            {/* Frosted glass panel - matching Services page exactly */}
             <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 shadow-xl text-center">
-              {/* HEADLINE - matching Services: text-4xl sm:text-5xl md:text-6xl */}
+              {/* HEADLINE */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
                 <span className="text-white">Turn Missed Calls Into </span>
                 <span className="text-brand-magenta">Booked Jobs</span>
               </h1>
 
-              {/* SUBHEAD - matching Services: text-lg md:text-xl */}
+              {/* SUBHEAD */}
               <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl mx-auto">
                 Your AI Receptionist talks to clients, qualifies them, and books
                 appointments straight into your calendar 24/7 — even when you're
                 busy or out living your life.
               </p>
 
-              {/* CTAs - matching Services page button sizing and layout */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                {/* Primary CTA - matches Services: px-8 py-4 text-lg */}
+              {/* CTAs - Simplified shorter text */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch mb-8">
+                {/* Primary CTA */}
                 <button
                   type="button"
                   onClick={handleCTAClick}
                   aria-label="Book a strategy call"
-                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 rounded-full bg-brand-magenta px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-brand-magenta/20 hover:scale-105 hover:shadow-xl hover:shadow-brand-magenta/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-magenta focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-95"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-magenta px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-brand-magenta/20 hover:scale-105 hover:shadow-xl hover:shadow-brand-magenta/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-magenta focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-95 whitespace-nowrap"
                 >
                   Book Strategy Call
                   <ArrowRight
@@ -163,42 +162,42 @@ const Hero = () => {
                   />
                 </button>
 
-                {/* Secondary CTA - white to navy transition */}
+                {/* Secondary CTA */}
                 <button
                   type="button"
                   onClick={scrollToHowItWorks}
                   aria-label="See how our AI receptionist works"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-navy bg-white text-brand-navy px-8 py-4 text-lg font-medium hover:bg-brand-navy hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-slate-950"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-navy bg-white text-brand-navy px-8 py-4 text-lg font-medium hover:bg-brand-navy hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-slate-950 whitespace-nowrap"
                 >
-                  See How It Works
+                  How It Works
                   <ChevronDown className="w-5 h-5" aria-hidden="true" />
                 </button>
               </div>
 
-              {/* Tagline - matching Services: text-slate-400 italic text-base */}
+              {/* Tagline */}
               <p className="text-slate-400 italic text-base mb-8">
                 Busy Does Not Mean Missed. Just WinStreams.
               </p>
 
-              {/* Benefits Pills - matching Services page design EXACTLY */}
-              <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6">
+              {/* Benefits Pills - Better wrapping for desktop */}
+              <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
                 <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
                   <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
                     <Sparkle size={18} weight="duotone" className="text-brand-magenta" />
                   </div>
-                  <span className="text-sm text-slate-300 font-medium">AI Learns Your Business</span>
+                  <span className="text-sm text-slate-300 font-medium whitespace-nowrap">AI Learns Your Business</span>
                 </div>
                 <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
                   <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
                     <CalendarCheck size={18} weight="duotone" className="text-brand-magenta" />
                   </div>
-                  <span className="text-sm text-slate-300 font-medium">New Leads on Your Calendar</span>
+                  <span className="text-sm text-slate-300 font-medium whitespace-nowrap">New Leads on Your Calendar</span>
                 </div>
                 <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
                   <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
                     <Moon size={18} weight="duotone" className="text-brand-magenta" />
                   </div>
-                  <span className="text-sm text-slate-300 font-medium">Books While You Sleep</span>
+                  <span className="text-sm text-slate-300 font-medium whitespace-nowrap">Books While You Sleep</span>
                 </div>
               </div>
             </div>
@@ -256,7 +255,6 @@ const Hero = () => {
                   NEW JOBS BOOKED BY YOUR AI
                 </div>
 
-                {/* Updated grid with better mobile spacing */}
                 <div className="grid grid-cols-7 gap-1.5 sm:gap-2 text-center text-[11px]">
                   {weeklyJobs.map((item) => (
                     <div
@@ -270,7 +268,6 @@ const Hero = () => {
                       }`}
                     >
                       <span className="text-[13px] font-semibold">{item.day}</span>
-                      {/* Removed "Jobs" text, showing just the number */}
                       <span className="text-xs font-medium whitespace-nowrap">
                         {item.isOpen ? "Open" : item.jobs}
                       </span>
@@ -279,10 +276,9 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* Metrics row - fixed spacing to move right 3 metrics leftward */}
+              {/* Metrics row */}
               <div className="mt-6 pt-6 border-t border-slate-700">
                 <div className="grid grid-cols-4 gap-2">
-                  {/* First metric - no border */}
                   <div className="flex flex-col items-center justify-start">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-300/80 mb-2">
                       {totalJobs}
@@ -292,7 +288,6 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  {/* Metrics 2-4 with left border and reduced left padding */}
                   <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-2">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue-300 mb-2">
                       92%

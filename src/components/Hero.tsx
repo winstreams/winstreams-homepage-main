@@ -69,7 +69,7 @@ const Hero = () => {
     },
   ];
 
-  // Weekly jobs (Right Column) — fixed Thursday label "Th"
+  // Weekly jobs (Right Column)
   const weeklyJobs = [
     { id: "mon", day: "M", jobs: 3 },
     { id: "tue", day: "T", jobs: 2 },
@@ -80,7 +80,7 @@ const Hero = () => {
     { id: "sun", day: "S", jobs: 2 },
   ];
 
-  // Benefits pills (Left Column) — Home hero content
+  // Benefits pills (Left Column)
   const benefits: Benefit[] = [
     { id: "learn", icon: Sparkle, label: "AI Learns Your Business" },
     { id: "calendar", icon: CalendarCheck, label: "New Leads on Your Calendar" },
@@ -90,7 +90,7 @@ const Hero = () => {
   const totalJobs = weeklyJobs.reduce((sum, day) => sum + day.jobs, 0);
 
   // Notification color map
-  const colorMap = {
+  const colorMap: Record<NotifColor, { text: string; bg: string; border: string; badge: string }> = {
     amber: {
       text: "text-amber-400",
       bg: "bg-amber-900/40",
@@ -115,10 +115,7 @@ const Hero = () => {
       border: "border-purple-500/20",
       badge: "bg-purple-500/20",
     },
-  } as const satisfies Record<
-    NotifColor,
-    { text: string; bg: string; border: string; badge: string }
-  >;
+  };
 
   const scrollToHowItWorks = () => {
     const el = document.getElementById("how-it-works");
@@ -132,14 +129,14 @@ const Hero = () => {
   return (
     <section className="relative bg-slate-950 overflow-hidden py-12 sm:py-16 lg:py-24 md:min-h-[85vh] md:flex md:items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* LEFT COLUMN */}
           <div className="w-full max-w-2xl lg:max-w-none mx-auto lg:mx-0">
             <div className="w-full lg:max-w-[640px] mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-white/5 to-transparent p-4 sm:p-5 md:bg-slate-900/40 md:backdrop-blur-sm md:border md:border-white/10 md:p-8 lg:p-10 md:shadow-xl text-center">
               {/* Headline */}
-              <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2.125rem] sm:text-5xl lg:text-6xl font-bold leading-snug tracking-tight mb-5">
+              <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2rem] sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.15] tracking-tight mb-5">
                 <span className="text-white">Turn Missed Calls Into </span>
-                <span className="text-brand-magenta">Booked&nbsp;Jobs</span>
+                <span className="text-brand-magenta">Booked Jobs</span>
               </h1>
 
               {/* Subhead */}
@@ -165,12 +162,12 @@ const Hero = () => {
                   />
                 </button>
 
-                {/* Secondary CTA — SOLID NAVY + SAFE HOVER */}
+                {/* Secondary CTA */}
                 <button
                   type="button"
                   onClick={scrollToHowItWorks}
                   aria-label="See how our AI receptionist works"
-                  className="w-full sm:flex-1 sm:min-w-0 inline-flex items-center justify-center gap-2 bg-brand-navy text-white border-2 border-brand-navy font-semibold px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full leading-none whitespace-nowrap min-h-[52px] md:min-h-[56px] transition-all duration-300 active:scale-95 md:hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                  className="w-full sm:flex-1 sm:min-w-0 inline-flex items-center justify-center gap-2 bg-white text-brand-navy border-2 border-brand-navy font-semibold px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full leading-none whitespace-nowrap min-h-[52px] md:min-h-[56px] transition-all duration-300 active:scale-95 md:hover:bg-brand-navyLight md:hover:text-white md:hover:border-brand-navyLight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                 >
                   See How It Works
                   <ChevronDown className="w-5 h-5" aria-hidden="true" />
@@ -181,7 +178,7 @@ const Hero = () => {
                 Busy Does Not Mean Missed. Just WinStreams.
               </p>
 
-              {/* BENEFITS PILLS — Home hero style (no inner circle wrapper) */}
+              {/* Benefits Pills */}
               <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3">
                 {benefits.map((benefit) => {
                   const BenefitIcon = benefit.icon;
@@ -281,7 +278,7 @@ const Hero = () => {
 
               {/* Metrics row */}
               <div className="mt-6 pt-6 border-t border-slate-700">
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-4 gap-3">
                   <div className="flex flex-col items-center justify-start">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-300/80 mb-2">
                       {totalJobs}
@@ -291,7 +288,7 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-4">
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-3">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue-300 mb-2">
                       92%
                     </div>
@@ -300,7 +297,7 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-4">
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-3">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-emerald-300 mb-2">
                       $450
                     </div>
@@ -309,7 +306,7 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-4">
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-3">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-violet-300 mb-2">
                       24/7
                     </div>
@@ -319,10 +316,8 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
-              {/* /Metrics */}
             </div>
           </div>
-          {/* /RIGHT COLUMN */}
         </div>
       </div>
     </section>

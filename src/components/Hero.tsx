@@ -80,7 +80,7 @@ const Hero = () => {
     { id: "sun", day: "S", jobs: 2 },
   ];
 
-  // Benefits pills (Left Column)
+  // Benefits pills (Left Column) - matching Services page exactly
   const benefits: Benefit[] = [
     { id: "learn", icon: Sparkle, label: "AI Learns Your Business" },
     { id: "calendar", icon: CalendarCheck, label: "New Leads on Your Calendar" },
@@ -127,84 +127,85 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative bg-slate-950 overflow-hidden py-12 sm:py-16 lg:py-24 md:min-h-[85vh] md:flex md:items-center">
+    <section className="relative bg-slate-950 overflow-hidden py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-          {/* LEFT COLUMN */}
-          <div className="w-full max-w-2xl lg:max-w-none mx-auto lg:mx-0">
-            <div className="w-full lg:max-w-[640px] mx-auto lg:mx-0 rounded-2xl bg-gradient-to-b from-white/5 to-transparent p-4 sm:p-5 md:bg-slate-900/40 md:backdrop-blur-sm md:border md:border-white/10 md:p-8 lg:p-10 md:shadow-xl text-center">
-              {/* Headline */}
-              <h1 className="mx-auto max-w-[18ch] sm:max-w-none text-[2rem] sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.15] tracking-tight mb-5">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* LEFT COLUMN - Hero Card */}
+          <div className="w-full max-w-4xl lg:max-w-none mx-auto lg:mx-0">
+            {/* Frosted glass panel - matching Services page exactly */}
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-8 md:p-12 shadow-xl text-center">
+              {/* HEADLINE - matching Services: text-4xl sm:text-5xl md:text-6xl */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
                 <span className="text-white">Turn Missed Calls Into </span>
                 <span className="text-brand-magenta">Booked Jobs</span>
               </h1>
 
-              {/* Subhead */}
-              <p className="text-[15px] sm:text-base lg:text-xl text-slate-300/90 mb-6 leading-[1.65] md:leading-relaxed max-w-[46ch] md:max-w-2xl mx-auto">
+              {/* SUBHEAD - matching Services: text-lg md:text-xl */}
+              <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl mx-auto">
                 Your AI Receptionist talks to clients, qualifies them, and books
                 appointments straight into your calendar 24/7 — even when you're
                 busy or out living your life.
               </p>
 
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row sm:items-stretch justify-center gap-4 mb-5 sm:w-full sm:max-w-xl sm:mx-auto">
-                {/* Primary CTA */}
+              {/* CTAs - matching Services page button sizing and layout */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                {/* Primary CTA - matches Services: px-8 py-4 text-lg */}
                 <button
                   type="button"
                   onClick={handleCTAClick}
                   aria-label="Book a strategy call"
-                  className="w-full sm:flex-1 sm:min-w-0 group inline-flex items-center justify-center gap-2 bg-brand-magenta text-white font-semibold px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full leading-none whitespace-nowrap min-h-[52px] md:min-h-[56px] transition-all duration-300 active:scale-95 shadow-lg shadow-brand-magenta/20 md:hover:scale-105 md:hover:shadow-xl md:hover:shadow-brand-magenta/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 rounded-full bg-brand-magenta px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-brand-magenta/20 hover:scale-105 hover:shadow-xl hover:shadow-brand-magenta/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-magenta focus:ring-offset-2 focus:ring-offset-slate-950 active:scale-95"
                 >
                   Book Strategy Call
                   <ArrowRight
-                    className="w-5 h-5 md:group-hover:translate-x-1 transition-transform"
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform"
                     aria-hidden="true"
                   />
                 </button>
 
-                {/* Secondary CTA */}
+                {/* Secondary CTA - white to navy transition */}
                 <button
                   type="button"
                   onClick={scrollToHowItWorks}
                   aria-label="See how our AI receptionist works"
-                  className="w-full sm:flex-1 sm:min-w-0 inline-flex items-center justify-center gap-2 bg-white text-brand-navy border-2 border-brand-navy font-semibold px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-full leading-none whitespace-nowrap min-h-[52px] md:min-h-[56px] transition-all duration-300 active:scale-95 md:hover:bg-brand-navyLight md:hover:text-white md:hover:border-brand-navyLight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border-2 border-brand-navy bg-white text-brand-navy px-8 py-4 text-lg font-medium hover:bg-brand-navy hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-slate-950"
                 >
                   See How It Works
                   <ChevronDown className="w-5 h-5" aria-hidden="true" />
                 </button>
               </div>
 
-              <p className="text-sm md:text-base text-slate-300 italic mb-6">
+              {/* Tagline - matching Services: text-slate-400 italic text-base */}
+              <p className="text-slate-400 italic text-base mb-8">
                 Busy Does Not Mean Missed. Just WinStreams.
               </p>
 
-              {/* Benefits Pills */}
-              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3">
-                {benefits.map((benefit) => {
-                  const BenefitIcon = benefit.icon;
-                  return (
-                    <div
-                      key={benefit.id}
-                      className="flex items-center gap-3 rounded-full bg-white/5 border border-white/10 px-4 py-2.5 text-left"
-                    >
-                      <BenefitIcon
-                        size={18}
-                        weight="duotone"
-                        className="text-brand-magenta flex-shrink-0"
-                        aria-hidden="true"
-                      />
-                      <span className="text-[13px] leading-snug text-slate-300">
-                        {benefit.label}
-                      </span>
-                    </div>
-                  );
-                })}
+              {/* Benefits Pills - matching Services page design EXACTLY */}
+              <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-6">
+                <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
+                  <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
+                    <Sparkle size={18} weight="duotone" className="text-brand-magenta" />
+                  </div>
+                  <span className="text-sm text-slate-300 font-medium">AI Learns Your Business</span>
+                </div>
+                <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
+                  <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
+                    <CalendarCheck size={18} weight="duotone" className="text-brand-magenta" />
+                  </div>
+                  <span className="text-sm text-slate-300 font-medium">New Leads on Your Calendar</span>
+                </div>
+                <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
+                  <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
+                    <Moon size={18} weight="duotone" className="text-brand-magenta" />
+                  </div>
+                  <span className="text-sm text-slate-300 font-medium">Books While You Sleep</span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
-          <div className="w-full max-w-xl lg:max-w-none mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur md:shadow-2xl">
+          {/* RIGHT COLUMN - Dashboard */}
+          <div className="w-full max-w-xl lg:max-w-none mx-auto lg:mx-0 rounded-3xl bg-slate-900/60 border border-white/10 p-6 sm:p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur md:shadow-2xl">
             <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
               {/* Notification stack */}
               <div className="space-y-4">
@@ -255,11 +256,12 @@ const Hero = () => {
                   NEW JOBS BOOKED BY YOUR AI
                 </div>
 
-                <div className="grid grid-cols-7 gap-2 text-center text-[11px]">
+                {/* Updated grid with better mobile spacing */}
+                <div className="grid grid-cols-7 gap-1.5 sm:gap-2 text-center text-[11px]">
                   {weeklyJobs.map((item) => (
                     <div
                       key={item.id}
-                      className={`flex flex-col gap-1 items-center justify-center rounded-lg px-2 py-3 ${
+                      className={`flex flex-col gap-1 items-center justify-center rounded-lg px-1 sm:px-2 py-3 ${
                         item.isOpen
                           ? "border border-dashed border-slate-600 text-slate-500"
                           : item.jobs >= 3
@@ -268,17 +270,19 @@ const Hero = () => {
                       }`}
                     >
                       <span className="text-[13px] font-semibold">{item.day}</span>
+                      {/* Removed "Jobs" text, showing just the number */}
                       <span className="text-xs font-medium whitespace-nowrap">
-                        {item.isOpen ? "Open" : `${item.jobs} Jobs`}
+                        {item.isOpen ? "Open" : item.jobs}
                       </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Metrics row */}
+              {/* Metrics row - fixed spacing to move right 3 metrics leftward */}
               <div className="mt-6 pt-6 border-t border-slate-700">
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-4 gap-2">
+                  {/* First metric - no border */}
                   <div className="flex flex-col items-center justify-start">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-300/80 mb-2">
                       {totalJobs}
@@ -288,7 +292,8 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-3">
+                  {/* Metrics 2-4 with left border and reduced left padding */}
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-2">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue-300 mb-2">
                       92%
                     </div>
@@ -297,7 +302,7 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-3">
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-2">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-emerald-300 mb-2">
                       $450
                     </div>
@@ -306,7 +311,7 @@ const Hero = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-3">
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-2">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-violet-300 mb-2">
                       24/7
                     </div>

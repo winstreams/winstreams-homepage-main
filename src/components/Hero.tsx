@@ -123,11 +123,13 @@ const Hero = () => {
 
   return (
     <section className="relative bg-slate-950 overflow-hidden py-16 lg:py-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* CRITICAL: Proper mobile padding to prevent overflow */}
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* LEFT COLUMN - Hero Card */}
           <div className="w-full">
-            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-6 sm:p-8 md:p-12 shadow-xl text-center">
+            {/* CRITICAL: Reduced mobile padding inside card */}
+            <div className="bg-slate-900/40 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-8 md:p-12 shadow-xl text-center">
               {/* HEADLINE */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
                 <span className="text-white">Turn Missed Calls Into </span>
@@ -141,9 +143,8 @@ const Hero = () => {
                 busy or out living your life.
               </p>
 
-              {/* CTAs - Fixed width constraints */}
+              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-                {/* Primary CTA */}
                 <button
                   type="button"
                   onClick={handleCTAClick}
@@ -154,7 +155,6 @@ const Hero = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                 </button>
 
-                {/* Secondary CTA */}
                 <button
                   type="button"
                   onClick={scrollToHowItWorks}
@@ -171,9 +171,8 @@ const Hero = () => {
                 Busy Does Not Mean Missed. Just WinStreams.
               </p>
 
-              {/* Benefits Pills - 2 on top, 1 on bottom - FIXED LAYOUT */}
+              {/* Benefits Pills */}
               <div className="flex flex-col items-center gap-3 max-w-xl mx-auto">
-                {/* Top row - First 2 pills side by side */}
                 <div className="flex flex-col sm:flex-row gap-3 w-full justify-center">
                   <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/10">
                     <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
@@ -188,7 +187,6 @@ const Hero = () => {
                     <span className="text-sm text-slate-300 font-medium whitespace-nowrap">Books While You Sleep</span>
                   </div>
                 </div>
-                {/* Bottom row - Third pill centered */}
                 <div className="flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm rounded-full px-4 py-2.5 border border-white/10">
                   <div className="w-8 h-8 rounded-full bg-brand-magenta/20 flex items-center justify-center flex-shrink-0">
                     <CalendarCheck size={18} weight="duotone" className="text-brand-magenta" />
@@ -200,9 +198,9 @@ const Hero = () => {
           </div>
 
           {/* RIGHT COLUMN - Dashboard */}
-          <div className="w-full rounded-3xl bg-slate-900/60 border border-white/10 p-6 sm:p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur md:shadow-2xl">
+          <div className="w-full rounded-3xl bg-slate-900/60 border border-white/10 p-5 sm:p-8 lg:p-10 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between backdrop-blur md:shadow-2xl">
             <div className="space-y-6 lg:space-y-8 flex-1 flex flex-col justify-between">
-              {/* Notification stack - Larger step text */}
+              {/* Notification stack */}
               <div className="space-y-4">
                 {notifications.map((notif) => {
                   const colors = colorMap[notif.color];
@@ -213,7 +211,6 @@ const Hero = () => {
                         <NotifIcon size={18} weight="duotone" className={colors.text} aria-hidden="true" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        {/* Increased step text from text-[11px] to text-xs */}
                         <div className={`text-xs font-semibold uppercase tracking-wide mb-0.5 ${colors.text}`}>
                           {notif.step}
                         </div>
@@ -227,12 +224,11 @@ const Hero = () => {
                 })}
               </div>
 
-              {/* Weekly stats - 8% larger calendar */}
+              {/* Weekly stats */}
               <div className="bg-slate-800/30 rounded-xl p-4 sm:p-5">
                 <div className="text-base font-semibold text-slate-200 uppercase tracking-wide mb-4">
                   NEW JOBS BOOKED BY YOUR AI
                 </div>
-                {/* Increased gap and padding for 8% larger appearance */}
                 <div className="grid grid-cols-7 gap-2 sm:gap-2.5 text-center">
                   {weeklyJobs.map((item) => (
                     <div
@@ -248,22 +244,22 @@ const Hero = () => {
                 </div>
               </div>
 
-              {/* Metrics row */}
+              {/* Metrics row - FIXED ALIGNMENT */}
               <div className="mt-6 pt-6 border-t border-slate-700">
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-1.5">
                   <div className="flex flex-col items-center justify-start">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-amber-300/80 mb-2">{totalJobs}</div>
                     <div className="text-xs text-slate-300 font-medium whitespace-nowrap">New Jobs</div>
                   </div>
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-2">
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-1.5">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue-300 mb-2">92%</div>
                     <div className="text-xs text-slate-300 font-medium whitespace-nowrap">Engaged</div>
                   </div>
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-2">
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-1.5">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-emerald-300 mb-2">$450</div>
                     <div className="text-xs text-slate-300 font-medium whitespace-nowrap">Avg Value</div>
                   </div>
-                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-2">
+                  <div className="flex flex-col items-center justify-start border-l-2 border-slate-700 pl-1.5">
                     <div className="text-xl md:text-2xl lg:text-3xl font-semibold text-violet-300 mb-2">24/7</div>
                     <div className="text-xs text-slate-300 font-medium whitespace-nowrap">Coverage</div>
                   </div>
